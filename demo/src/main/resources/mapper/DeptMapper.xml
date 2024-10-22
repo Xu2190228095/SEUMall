@@ -1,0 +1,19 @@
+<!-- DeptMapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.DeptDao">
+    <select id="findAll" parameterType="Dept" resultType="Dept">
+        select deptno, dname, loc from dept
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test = "deptno != null">
+                AND deptno = #{deptno}
+            </if>
+            <if test = "dname != null">
+                AND dname = #{dname}
+            </if>
+            <if test = "loc != null">
+                AND loc = #{loc}
+            </if>
+        </trim>
+    </select>
+</mapper>
