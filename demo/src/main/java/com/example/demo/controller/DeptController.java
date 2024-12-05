@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Scope("prototype")
 @RequestMapping("/dept")
+//@RequestMapping("/sms_home_recommend_product")
 @CrossOrigin(origins = "*")
 public class DeptController {
     @Resource
