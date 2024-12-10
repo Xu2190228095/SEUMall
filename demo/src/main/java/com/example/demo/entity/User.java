@@ -8,6 +8,33 @@ public class User implements Serializable {
     private Integer id;
     private String username;
     private String password;
+    private String character;
+    private String lastLoginTime;
+    private boolean isActive;
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(String lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
 
     public Integer getId() {
         return id;
