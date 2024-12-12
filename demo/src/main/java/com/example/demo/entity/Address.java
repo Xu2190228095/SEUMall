@@ -1,21 +1,12 @@
 package com.example.demo.entity;
 
 public class Address {
-    private Integer phone;
+    private String phone;
     private String name;
-    private String address;
     private String country;
     private String city;
     private String province;
     private String detailedAddress;
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getCity() {
         return city;
@@ -49,19 +40,19 @@ public class Address {
         this.name = name;
     }
 
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
-
     public String getProvince() {
         return province;
     }
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

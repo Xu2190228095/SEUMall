@@ -7,7 +7,6 @@ public class Customer {
     private String password;
     private String email;
     private Integer account;
-    private List<Address> addressList;
 
     public Integer getAccount() {
         return account;
@@ -15,14 +14,6 @@ public class Customer {
 
     public void setAccount(Integer account) {
         this.account = account;
-    }
-
-    public List<Address> getAddressList() {
-        return addressList;
-    }
-
-    public void setAddressList(List<Address> addressList) {
-        this.addressList = addressList;
     }
 
     public String getEmail() {
