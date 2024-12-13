@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * 实现UserDetailsService接口，提供自定义的用户详情服务
  */
-@Service
+@Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
     // 注入UserDao，用于访问用户数据
     @Resource
@@ -24,8 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * @throws UsernameNotFoundException 如果用户不存在
      */
     @Override
-    public UserDetails loadUserByUsername(String username) throws
-            UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 通过UserDao根据用户名查询用户信息
         User user = userDao.findByUsername(username);
         // 如果用户不存在，抛出异常

@@ -11,4 +11,5 @@ public interface CustomerDao {
     public List<Customer> findAll(Customer customer);
     public int insert(Customer customer);
     public int update(Customer customer);
+    public Customer findByUsername(String username);
 }

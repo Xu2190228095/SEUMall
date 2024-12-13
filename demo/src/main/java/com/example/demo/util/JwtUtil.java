@@ -26,10 +26,11 @@ public class JwtUtil {
      * @param username 用户名，作为令牌的主题
      * @return 生成的JWT令牌字符串
      */
-    public String generateToken(String username) {
+    public String generateToken(String username, String character) {
         return Jwts.builder()
                 .setSubject(username)
                 .setExpiration(new Date(System.currentTimeMillis()+ 3600000))
+                .setIssuer(character)
                 .signWith(getSecretKey())
                 .compact();
     }
@@ -71,5 +72,16 @@ public class JwtUtil {
      */
     private boolean isTokenExpired(String token) {
         return extractAllClaims(token).getExpiration().before(new Date());
+    }
+
+    /**
+     * 获取JWT令牌的发行者信息
+     *
+     * @param token JWT令牌字符串
+     * @return 发行者信息字符串
+     */
+    public String getCharacter(String token) {
+        // 提取JWT令牌中的所有声明信息，并返回发行者信息
+        return extractAllClaims(token).getIssuer();
     }
 }

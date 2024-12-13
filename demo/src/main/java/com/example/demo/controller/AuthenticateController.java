@@ -4,6 +4,7 @@ import com.example.demo.entity.AuthenticationRequest;
 import com.example.demo.entity.AuthenticationResponse;
 import com.example.demo.util.JwtUtil;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,14 +18,18 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 @RestController
 @Scope("prototype")
-@RequestMapping
+@RequestMapping("/authenticate")
 public class AuthenticateController {
     @Resource
     private AuthenticationManager authenticationManager;
     @Resource
     private JwtUtil jwtUtil;
     @Resource
+    @Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
+    @Resource
+    @Qualifier("customerDetailsServiceImpl")
+    private UserDetailsService customerUserDetailsService;
     /**
      * 创建认证令牌
      *
@@ -32,7 +37,7 @@ public class AuthenticateController {
      * @return 包含JWT令牌的响应实体
      * @throws Exception 如果用户名或密码不正确抛出异常
      */
-    @GetMapping("/authenticate")
+    @GetMapping("/user")
     public ResponseEntity<?> createAuthenticationToken(AuthenticationRequest authenticationRequest) throws Exception {
         try {
             // 尝试使用用户名和密码认证用户
@@ -48,7 +53,30 @@ public class AuthenticateController {
         final UserDetails userDetails =
                 userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         // 生成JWT令牌
-        final String jwt = jwtUtil.generateToken(userDetails.getUsername());
+        final String jwt = jwtUtil.generateToken(userDetails.getUsername(),"后台用户");
+        // 打印JWT令牌（调试目的）
+        System.out.println(jwt);
+        // 返回包含JWT令牌的响应
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    }
+
+    @GetMapping("/customer")
+    public ResponseEntity<?> createAuthenticationToken1(AuthenticationRequest authenticationRequest) throws Exception {
+        try {
+            // 尝试使用用户名和密码认证用户
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
+                            authenticationRequest.getPassword())
+            );
+        } catch (Exception e) {
+            // 如果认证失败，抛出异常
+            throw new Exception("Incorrect username or password", e);
+        }
+        // 加载用户详细信息
+        final UserDetails userDetails =
+                customerUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        // 生成JWT令牌
+        final String jwt = jwtUtil.generateToken(userDetails.getUsername(),"前台用户");
         // 打印JWT令牌（调试目的）
         System.out.println(jwt);
         // 返回包含JWT令牌的响应

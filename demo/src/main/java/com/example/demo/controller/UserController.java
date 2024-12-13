@@ -36,9 +36,14 @@ public class UserController {
         return this.userService.delete(user);
     }
 
-    @GetMapping("update")
+    @GetMapping("/update")
     public Object update(User user) {
         System.out.println("user:"+user);
         return this.userService.update(user);
+    }
+
+    @GetMapping("/findByUsername")
+    public Object findByUsername(String username) {
+        return this.userService.findByUsername(username);
     }
 }

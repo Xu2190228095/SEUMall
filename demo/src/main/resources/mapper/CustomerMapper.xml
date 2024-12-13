@@ -5,4 +5,7 @@
     <select id="findAll" parameterType="Customer" resultType="Customer">
         select * from customer
     </select>
+    <select id="findByUsername" parameterType="String" resultType="Customer">
+        select * from customer where username = #{username}
+    </select>
 </mapper>

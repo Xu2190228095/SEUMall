@@ -4,6 +4,7 @@ import com.example.demo.filter.JwtRequestFilter;
 import com.example.demo.util.JwtUtil;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,7 +27,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
     @Resource
+    @Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
+    @Resource
+    @Qualifier("customerDetailsServiceImpl")
+    private UserDetailsService customerUserDetailsService;
     @Resource
     private JwtRequestFilter jwtRequestFilter;
     @Resource
@@ -41,6 +46,7 @@ public class SecurityConfig {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(customerUserDetailsService).passwordEncoder(passwordEncoder());
     }
     /**
      * 创建安全过滤链，配置请求的授权规则和会话管理策略
@@ -52,7 +58,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(authorize -> authorize
-                                .requestMatchers("/authenticate").permitAll() // 允许所有用户访问登录接口
+                                .requestMatchers("/authenticate/*").permitAll() // 允许所有用户访问登录接口
                                 .anyRequest().authenticated() // 其他所有请求都需要认证
                 )
                 .sessionManagement(session -> session

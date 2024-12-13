@@ -6,6 +6,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,11 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
     @Resource
+    @Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
+    @Resource
+    @Qualifier("customerDetailsServiceImpl")
+    private UserDetailsService customerDetailsService;
     @Resource
     private JwtUtil jwtUtil;
     /**
@@ -47,7 +52,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // 如果用户名不为空且当前安全上下文中尚未设置身份验证信息
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // 加载用户详细信息
-             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+             UserDetails userDetails = null;
+             if(jwtUtil.getCharacter(jwt).equals("后台用户")) {
+                 userDetails = this.userDetailsService.loadUserByUsername(username);
+             }else{
+                 userDetails = this.customerDetailsService.loadUserByUsername(username);
+             }
             // 验证JWT令牌是否有效
             if (jwtUtil.isTokenValid(jwt, userDetails.getUsername())) {
                 // 创建身份验证令牌并设置用户详细信息和权限
