@@ -17,6 +17,10 @@
         </trim>
     </select>
 
+    <select id="findByUsername" parameterType="String" resultType="User">
+        select * from user where username = #{username}
+    </select>
+
     <insert id="insert" parameterType="User">
         insert into user(username,password,lastlogintime,email,`character`,account,isActive)
         values(#{username},#{password},#{lastLoginTime},#{email},#{character},#{account},#{isActive})
