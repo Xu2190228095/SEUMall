@@ -10,9 +10,10 @@ public class User implements Serializable {
     private String password;
     private String character;
     private String lastLoginTime;
-    private boolean isActive;
+    private Boolean isActive;
     private String email;
     private Integer account;
+    private String token;
 
     public String getCharacter() {
         return character;
@@ -22,12 +23,12 @@ public class User implements Serializable {
         this.character = character;
     }
 
-    public boolean isActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public String getLastLoginTime() {
@@ -38,11 +39,11 @@ public class User implements Serializable {
         this.lastLoginTime = lastLoginTime;
     }
 
-    public Integer getId() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setId(Integer uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
@@ -76,6 +77,29 @@ public class User implements Serializable {
 
     public void setAccount(Integer account) {
         this.account = account;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "account=" + account +
+                ", uid=" + uid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", character='" + character + '\'' +
+                ", lastLoginTime='" + lastLoginTime + '\'' +
+                ", isActive=" + isActive +
+                ", email='" + email + '\'' +
+                ", token='" + token + '\'' +
+                '}';
     }
 }
 

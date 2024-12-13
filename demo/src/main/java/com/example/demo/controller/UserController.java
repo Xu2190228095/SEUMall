@@ -23,4 +23,22 @@ public class UserController {
     public Object queryList(User user) {
         return this.userService.findAll(user);
     }
+
+    @GetMapping("/insert")
+    public Object insert(User user) {
+        System.out.println("user:"+user);
+        return this.userService.insert(user);
+    }
+
+    @GetMapping("/delete")
+    public Object delete(User user) {
+        System.out.println("user:"+user);
+        return this.userService.delete(user);
+    }
+
+    @GetMapping("update")
+    public Object update(User user) {
+        System.out.println("user:"+user);
+        return this.userService.update(user);
+    }
 }

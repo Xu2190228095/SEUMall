@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.UserDao">
     <select id="findAll" parameterType="User" resultType="User">
-        select uid, username, password from user
+        select * from user
         <trim prefix="where" prefixOverrides="and | or">
             <if test="uid != null">
                 AND uid = #{uid}
@@ -16,4 +16,44 @@
             </if>
         </trim>
     </select>
+
+    <insert id="insert" parameterType="User">
+        insert into user(username,password,lastlogintime,email,`character`,account,isActive)
+        values(#{username},#{password},#{lastLoginTime},#{email},#{character},#{account},#{isActive})
+    </insert>
+
+    <delete id="delete" parameterType="User">
+        delete from user where uid = #{uid}
+    </delete>
+
+    <update id="update" parameterType="User">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="lastLoginTime != null">
+                lastlogintime = #{lastLoginTime},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="character != null">
+                `character` = #{character},
+            </if>
+            <if test="account != null">
+                account = #{account},
+            </if>
+            <if test="isActive != null">
+                isActive = #{isActive},
+            </if>
+            <if test="token != null">
+                token = #{token},
+            </if>
+        </trim>
+            where uid = #{uid}
+    </update>
 </mapper>
