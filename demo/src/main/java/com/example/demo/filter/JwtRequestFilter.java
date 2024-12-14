@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
+
 /**
  * JWT请求过滤器，用于处理每次HTTP请求，验证JWT令牌并设置身份验证信息
  */
@@ -53,10 +54,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // 加载用户详细信息
              UserDetails userDetails = null;
-             if(jwtUtil.getCharacter(jwt).equals("后台用户")) {
-                 userDetails = this.userDetailsService.loadUserByUsername(username);
-             }else{
+             if(jwtUtil.getCharacter(jwt).equals("前台用户")) {
                  userDetails = this.customerDetailsService.loadUserByUsername(username);
+             }else{
+                 userDetails = this.userDetailsService.loadUserByUsername(username);
              }
             // 验证JWT令牌是否有效
             if (jwtUtil.isTokenValid(jwt, userDetails.getUsername())) {
@@ -69,7 +70,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
-    // 继续执行过滤链
-    chain.doFilter(request, response);
+        // 继续执行过滤链
+        chain.doFilter(request, response);
     }
 }

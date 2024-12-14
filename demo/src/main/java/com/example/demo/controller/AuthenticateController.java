@@ -53,7 +53,7 @@ public class AuthenticateController {
         final UserDetails userDetails =
                 userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         // 生成JWT令牌
-        final String jwt = jwtUtil.generateToken(userDetails.getUsername(),"后台用户");
+        final String jwt = jwtUtil.generateToken(userDetails.getUsername(), authenticationRequest.getCharacter());
         // 打印JWT令牌（调试目的）
         System.out.println(jwt);
         // 返回包含JWT令牌的响应

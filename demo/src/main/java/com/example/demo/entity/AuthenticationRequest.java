@@ -7,6 +7,7 @@ public class AuthenticationRequest implements Serializable {
 
     private String username;
     private String password;
+    private String character;
 
     public String getPassword() {
         return password;
@@ -22,6 +23,14 @@ public class AuthenticationRequest implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
     }
 }
 
