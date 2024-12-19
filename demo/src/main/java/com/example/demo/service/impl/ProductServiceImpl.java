@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.dao.ProductDao;
 import com.example.demo.entity.Product;
+import com.example.demo.entity.User;
 import com.example.demo.service.ProductService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Scope;
@@ -35,5 +36,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public int update(Product product) {
         return productDao.update(product);
+    }
+    @Override
+    public Product findByProductname(String productname) {
+        return productDao.findByProductname(productname);
+    }
+    @Override
+    public Product findByProductid(Integer productid) {
+        return productDao.findByProductid(productid);
     }
 }
