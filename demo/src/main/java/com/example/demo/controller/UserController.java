@@ -5,12 +5,12 @@ import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @Scope("prototype")

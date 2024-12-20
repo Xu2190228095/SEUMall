@@ -51,7 +51,6 @@ public class UserServiceImpl implements UserService {
         map.put("start", start);
         map.put("size", size);
         map.put("userInfo", user);
-        System.out.println("map:" + map);
         return userDao.fetchList(map);
     }
 
