@@ -58,8 +58,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeRequests(authorize -> authorize
-                                .requestMatchers("/authenticate/*").permitAll() // 允许所有用户访问登录接口
+                .authorizeHttpRequests(authorize -> authorize
+                                .requestMatchers("/authenticate/**").permitAll() // 允许所有用户访问登录接口
                                 .requestMatchers(HttpMethod.OPTIONS).permitAll() // 允许OPTIONS请求
                                 .anyRequest().authenticated() // 其他所有请求都需要认证
                 )

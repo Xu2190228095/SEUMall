@@ -10,4 +10,8 @@ public interface UserService {
     public int update(User user);
     public int delete(User user);
     public User findByUsername(String username);
+
+    public List<User> fetchList(int page, int size, User user);
+
+    Object searchTotal(User user);
 }

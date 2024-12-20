@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -9,7 +10,8 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String character;
-    private String lastLoginTime;
+    private Date createTime;
+    private Date lastLoginTime;
     private Boolean isActive;
     private String email;
     private Integer account;
@@ -31,11 +33,19 @@ public class User implements Serializable {
         this.isActive = isActive;
     }
 
-    public String getLastLoginTime() {
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(String lastLoginTime) {
+    public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 

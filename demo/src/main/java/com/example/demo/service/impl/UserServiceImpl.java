@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -42,4 +44,19 @@ public class UserServiceImpl implements UserService {
         return userDao.findByUsername(username);
     }
 
+    @Override
+    public List<User> fetchList(int page, int size, User user) {
+        Map<String, Object> map = new HashMap<>();
+        int start = (page - 1) * size;
+        map.put("start", start);
+        map.put("size", size);
+        map.put("userInfo", user);
+        System.out.println("map:" + map);
+        return userDao.fetchList(map);
+    }
+
+    @Override
+    public Object searchTotal(User user) {
+        return userDao.searchTotal(user);
+    }
 }
