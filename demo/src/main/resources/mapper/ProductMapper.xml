@@ -5,4 +5,10 @@
     <select id="findAll" parameterType="Product" resultType="Product">
         select * from product
     </select>
+    <select id="findByProductname" parameterType="String" resultType="Product">
+        select * from product where pname = #{productname}
+    </select>
+    <select id="findByProductid" parameterType="Integer" resultType="Product">
+        select * from product where id = #{productid}
+    </select>
 </mapper>
