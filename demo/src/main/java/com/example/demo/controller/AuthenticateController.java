@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.AuthenticationRequest;
 import com.example.demo.entity.AuthenticationResponse;
 import com.example.demo.entity.User;
+import com.example.demo.service.RedisService;
 import com.example.demo.service.UserService;
 import com.example.demo.util.JwtUtil;
 import jakarta.annotation.Resource;
@@ -37,6 +38,8 @@ public class AuthenticateController {
     private UserDetailsService customerUserDetailsService;
     @Resource
     private UserService userService;
+    @Resource
+    private RedisService redisService;
     /**
      * 创建认证令牌
      *
@@ -63,6 +66,10 @@ public class AuthenticateController {
         final String jwt = jwtUtil.generateToken(userDetails.getUsername(), authenticationRequest.getCharacter());
         // 打印JWT令牌（调试目的）
         System.out.println(jwt);
+
+//        redisService.valueOperations().set("user", "111");
+//
+//        System.out.println("user.jwt:" + redisService.valueOperations().get("user"));
         // 返回包含JWT令牌的响应
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
