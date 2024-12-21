@@ -5,4 +5,80 @@
     <select id="findAll" parameterType="Order" resultType="Order">
         select * from `order`
     </select>
+
+    <select id="fetchList" parameterType="java.util.Map" resultType="Order">
+        select `order`.id,`order`.order_id,`order`.create_time,
+               `order`.number*(select price from product where product.id = `order`.pid) as price,
+               `order`.score,`order`.state,customer.username from `order`,customer
+        <trim prefix="where" suffixOverrides="AND">
+            `order`.uid = #{orderInfo.uid} AND `order`.cid = customer.id
+            <if test="customerName != null">
+                AND customer.username like concat('%',#{customerName},'%')
+            </if>
+            <if test="orderInfo.order_id != null">
+                AND `order`.order_id =#{orderInfo.order_id}
+            </if>
+            <if test="orderInfo.state != null">
+                AND `order`.state =#{orderInfo.state}
+            </if>
+            <if test="orderInfo.create_time != null">
+                AND Date(`order`.create_time) =#{orderInfo.create_time}
+            </if>
+        </trim>
+        order by order.id
+        limit #{size} offset #{start}
+    </select>
+
+    <select id="searchTotal" parameterType="java.util.Map" resultType="int">
+        select count(*) from `order`,customer
+        <trim prefix="where" suffixOverrides="AND">
+            `order`.uid = #{orderInfo.uid} AND `order`.cid = customer.id
+            <if test="customerName != null">
+                AND customer.username like concat('%',#{customerName},'%')
+            </if>
+            <if test="orderInfo.order_id != null">
+                AND `order`.order_id =#{orderInfo.order_id}
+            </if>
+            <if test="orderInfo.state != null">
+                AND `order`.state =#{orderInfo.state}
+            </if>
+            <if test="orderInfo.create_time != null">
+                AND Date(`order`.create_time) =#{orderInfo.create_time}
+            </if>
+        </trim>
+    </select>
+
+    <delete id="delete" parameterType="Order">
+        delete from `order` where id = #{id}
+    </delete>
+    <update id="update" parameterType="Order">
+        update `order`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="order_id != null">
+                order_id = #{order_id},
+            </if>
+            <if test="create_time != null">
+                create_time = #{create_time},
+            </if>
+            <if test="number != null">
+                `order`.number = #{number},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="state != null">
+                `order`.state = #{state},
+            </if>
+            <if test="uid != null">
+                uid = #{uid},
+            </if>
+            <if test="cid != null">
+                cid = #{cid},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
 </mapper>
