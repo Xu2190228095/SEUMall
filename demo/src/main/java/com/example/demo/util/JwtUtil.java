@@ -29,7 +29,7 @@ public class JwtUtil {
     public String generateToken(String username, String character) {
         return Jwts.builder()
                 .setSubject(username)
-                .setExpiration(new Date(System.currentTimeMillis()+ 3600000))
+                .setExpiration(new Date(System.currentTimeMillis()+ 36000000))
                 .setIssuer(character)
                 .signWith(getSecretKey())
                 .compact();
@@ -40,7 +40,6 @@ public class JwtUtil {
      * @return 包含所有声明的Claims对象
      */
     public Claims extractAllClaims(String token) {
-        System.out.println("token:" + token);
         return Jwts.parserBuilder()
                 .setSigningKey(getSecretKey())
                 .build()

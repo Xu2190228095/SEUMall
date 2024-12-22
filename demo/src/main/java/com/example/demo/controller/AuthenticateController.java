@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.AuthenticationRequest;
 import com.example.demo.entity.AuthenticationResponse;
+import com.example.demo.entity.User;
+import com.example.demo.service.RedisService;
+import com.example.demo.service.UserService;
 import com.example.demo.util.JwtUtil;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,6 +15,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+
 /**
  * 认证控制器，用于处理用户认证请求
  */
@@ -30,6 +36,10 @@ public class AuthenticateController {
     @Resource
     @Qualifier("customerDetailsServiceImpl")
     private UserDetailsService customerUserDetailsService;
+    @Resource
+    private UserService userService;
+    @Resource
+    private RedisService redisService;
     /**
      * 创建认证令牌
      *
@@ -56,6 +66,10 @@ public class AuthenticateController {
         final String jwt = jwtUtil.generateToken(userDetails.getUsername(), authenticationRequest.getCharacter());
         // 打印JWT令牌（调试目的）
         System.out.println(jwt);
+
+//        redisService.valueOperations().set("user", "111");
+//
+//        System.out.println("user.jwt:" + redisService.valueOperations().get("user"));
         // 返回包含JWT令牌的响应
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
@@ -81,5 +95,29 @@ public class AuthenticateController {
         System.out.println(jwt);
         // 返回包含JWT令牌的响应
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    }
+
+    @PostMapping("/register")
+    public Object register(@RequestBody User user) {
+        if(this.userService.findByUsername(user.getUsername()) != null)
+            return -1;
+        user.setAccount(0);
+        user.setIsActive(false);
+        user.setToken("");
+        user.setEmail("");
+        user.setCreateTime(new Date(System.currentTimeMillis()));
+        return this.userService.insert(user);
+    }
+
+    @PostMapping("/login")
+    public Object login(@RequestBody User user){
+        user.setLastLoginTime(new Date(System.currentTimeMillis()));
+        System.out.println(this.userService.update(user));
+        user = this.userService.findByUsername(user.getUsername());
+        user.setPassword(null);
+        System.out.println(user);
+        if(!user.getIsActive())
+            return -1;
+        return user;
     }
 }

@@ -22,8 +22,8 @@
     </select>
 
     <insert id="insert" parameterType="User">
-        insert into user(username,password,lastlogintime,email,`character`,account,isActive)
-        values(#{username},#{password},#{lastLoginTime},#{email},#{character},#{account},#{isActive})
+        insert into user(username,password,createtime,lastlogintime,email,`character`,account,isActive)
+        values(#{username},#{password},#{createTime},#{lastLoginTime},#{email},#{character},#{account},#{isActive})
     </insert>
 
     <delete id="delete" parameterType="User">
@@ -38,6 +38,9 @@
             </if>
             <if test="password != null">
                 password = #{password},
+            </if>
+            <if test="createTime != null">
+                createtime = #{createtime},
             </if>
             <if test="lastLoginTime != null">
                 lastlogintime = #{lastLoginTime},
@@ -58,6 +61,24 @@
                 token = #{token},
             </if>
         </trim>
-            where uid = #{uid}
+            where username = #{username}
     </update>
+    <select id="fetchList" parameterType="java.util.Map" resultType="User">
+        select * from user
+        <trim prefix="where">
+            <if test="userInfo.username != null">
+                username like concat('%',#{userInfo.username},'%')
+            </if>
+        </trim>
+        order by user.uid
+        limit #{size} offset #{start}
+    </select>
+    <select id="searchTotal" parameterType="User" resultType="int">
+        select count(*) from user
+        <trim prefix="where">
+            <if test="username != null">
+                username like concat('%',#{username},'%')
+            </if>
+        </trim>
+    </select>
 </mapper>
