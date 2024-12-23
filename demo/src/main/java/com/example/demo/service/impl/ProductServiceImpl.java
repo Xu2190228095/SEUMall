@@ -50,4 +50,14 @@ public class ProductServiceImpl implements ProductService {
     public Product fetchProduct(Integer productid) {
         return productDao.fetchProduct(productid);  // 调用DAO层方法
     }
+
+    @Override
+    public List<Product> findByProductClass(String productClass) {
+        return productDao.findByProductClass(productClass);
+    }
+
+    @Override
+    public String findRemoteUrl(String img) {
+        return productDao.findRemoteUrl(img);
+    }
 }

@@ -32,17 +32,11 @@ public class FileUploadServiceImpl implements FileUploadService {
         return uploadResults[0] + "/" + uploadResults[1];
     }
 
+    @Override
     public byte[] downLoadFile(String fileUrl) throws IOException, MyException {
         String group = fileUrl.substring(0, fileUrl.indexOf("/"));
         String path = fileUrl.substring(fileUrl.indexOf("/") + 1);
         byte[] bytes = getStorageClient().download_file(group, path);
-        try {
-            //将文件保存到d盘
-            FileOutputStream fileOutputStream = new FileOutputStream("d:\\image.txt");
-            fileOutputStream.write(bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return bytes;
     }
 }

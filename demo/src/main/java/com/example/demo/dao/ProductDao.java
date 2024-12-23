@@ -17,5 +17,9 @@ public interface ProductDao {
     public Product findByProductid(Integer productid);
     // 根据商品ID查询商品
     public Product fetchProduct(Integer productid);  // 根据productid查询商品
+
+    List<Product> findByProductClass(String productClass);
+
+    String findRemoteUrl(String img);
 }
 

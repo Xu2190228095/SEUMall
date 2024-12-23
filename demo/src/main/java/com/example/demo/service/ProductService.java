@@ -16,4 +16,8 @@ public interface ProductService {
     public Product findByProductid(Integer productid);
     // 根据商品ID查询商品
     public Product fetchProduct(Integer productid);  // 新增接口方法
+
+    List<Product> findByProductClass(String productClass);
+
+    String findRemoteUrl(String img);
 }

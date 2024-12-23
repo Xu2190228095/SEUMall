@@ -1,11 +1,18 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Product;
-import com.example.demo.entity.User;
+import com.example.demo.service.FileUploadService;
 import com.example.demo.service.ProductService;
 import jakarta.annotation.Resource;
+import org.csource.common.MyException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author 18536
@@ -17,6 +24,9 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
     @Resource
     private ProductService productService;
+
+    @Resource
+    private FileUploadService fileUploadService;
     @GetMapping("/list")
     public Object queryList(Product product) {
         return this.productService.findAll(product);
@@ -53,5 +63,19 @@ public class ProductController {
     @GetMapping("/fetchProduct")
     public Object fetchProduct(@RequestParam("productid") Integer productid) {
         return this.productService.fetchProduct(productid);
+    }
+
+    @GetMapping("/findByProductClass")
+    public Object findByProductClass(String productClass) throws MyException, IOException {
+        Map<String, Object> map = new HashMap<>();
+        List<Product> products = this.productService.findByProductClass(productClass);
+        map.put("products",products);
+        List<byte[]> pictures = new ArrayList<>();
+        for (Product product:this.productService.findByProductClass(productClass)){
+            String remoteUrl = this.productService.findRemoteUrl(product.getImg());
+            pictures.add(fileUploadService.downLoadFile(remoteUrl));
+        }
+        map.put("pictures",pictures);
+        return map;
     }
 }

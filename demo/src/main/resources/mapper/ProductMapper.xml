@@ -15,4 +15,15 @@
     <select id="fetchProduct" parameterType="Integer" resultType="Product">
         select * from product where id = #{productid}
     </select>
+    <select id="findByProductClass" parameterType="String" resultType="Product">
+        select * from product
+        <trim prefix="where" prefixOverrides="AND">
+            <if test="pclass != null">
+                AND pclass = #{productClass}
+            </if>
+        </trim>
+    </select>
+    <select id="findRemoteUrl" parameterType="String" resultType="String">
+        select remoteUrl from imagemap where originUrl = #{img}
+    </select>
 </mapper>
