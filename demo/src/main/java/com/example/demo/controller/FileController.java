@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.FileUploadService;
+import com.example.demo.service.FileUploadService ;
 import jakarta.annotation.Resource;
 import org.csource.common.MyException;
 import org.springframework.http.ResponseEntity;
@@ -23,16 +23,5 @@ public class FileController {
             throw new RuntimeException(e);
         }
         return "File uploaded successfully. File path: " + filePath;
-    }
-
-    @PostMapping("/download")
-    public ResponseEntity<byte[]> downloadFile(@RequestBody String fileUrl) throws IOException, MyException {
-        System.out.println("fileUrl:"+fileUrl);
-        fileUrl="group1/M00/00/00/wKiigGdm8xCAfmecAAKvVs0XnYo161.jpg";
-        System.out.println("fileUrl:"+fileUrl);
-        byte[] fileContent = fileUploadService.downLoadFile(fileUrl);
-        return ResponseEntity.ok()
-                .header("Content-Disposition", "attachment; filename=" + fileUrl)
-                .body(fileContent);
     }
 }

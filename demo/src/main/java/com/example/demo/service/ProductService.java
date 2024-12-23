@@ -14,4 +14,6 @@ public interface ProductService {
     public int delete(Product product);
     public Product findByProductname(String productname);
     public Product findByProductid(Integer productid);
+    // 根据商品ID查询商品
+    public Product fetchProduct(Integer productid);  // 新增接口方法
 }

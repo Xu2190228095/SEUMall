@@ -49,6 +49,7 @@ public class AuthenticateController {
      */
     @GetMapping("/user")
     public ResponseEntity<?> createAuthenticationToken(AuthenticationRequest authenticationRequest) throws Exception {
+        System.out.println(authenticationRequest);
         try {
             // 尝试使用用户名和密码认证用户
             authenticationManager.authenticate(
