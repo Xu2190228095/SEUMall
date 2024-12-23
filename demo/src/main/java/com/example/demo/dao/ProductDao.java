@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -14,5 +15,7 @@ public interface ProductDao {
     public int delete(Product product);
     public Product findByProductname(String productname);
     public Product findByProductid(Integer productid);
+    // 根据商品ID查询商品
+    public Product fetchProduct(Integer productid);  // 根据productid查询商品
 }
 

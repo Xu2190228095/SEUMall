@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.config.FastDFSConfig;
 import com.example.demo.service.FileUploadService;
+import com.example.demo.config.FastDFSConfig ;
 import jakarta.annotation.Resource;
 import org.csource.common.MyException;
 import org.csource.fastdfs.StorageClient1;
@@ -20,11 +21,11 @@ public class FileUploadServiceImpl implements FileUploadService {
     @Override
     public String uploadFile(MultipartFile file) throws IOException, MyException
     {
-        // 获取文件的原始文件名和扩展名
+// 获取文件的原始文件名和扩展名
         String originalFilename = file.getOriginalFilename();
         String ext = originalFilename.substring(originalFilename.lastIndexOf(".")
                 + 1);
-        // 调用StorageClient的upload_file方法上传文件
+// 调用StorageClient的upload_file方法上传文件
         String[] uploadResults = getStorageClient().upload_file(file.getBytes(),
                 ext, null);
         // 返回文件的访问路径（通常是组名和文件名）

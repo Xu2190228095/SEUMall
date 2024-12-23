@@ -48,4 +48,10 @@ public class ProductController {
     public Object findByProductid(Integer productid) {
         return this.productService.findByProductid(productid);
     }
+
+    // 通过productid查询商品信息
+    @GetMapping("/fetchProduct")
+    public Object fetchProduct(@RequestParam("productid") Integer productid) {
+        return this.productService.fetchProduct(productid);
+    }
 }
