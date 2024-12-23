@@ -94,6 +94,7 @@ CREATE TABLE `order`  (
 -- ----------------------------
 INSERT INTO `order` VALUES (1, '2024-12-12 19:21:51', '待发货', NULL, 1, 1, 2);
 
+
 -- ----------------------------
 -- Table structure for orderrecord
 -- ----------------------------
@@ -147,7 +148,13 @@ CREATE TABLE `product`  (
 -- Records of product
 -- ----------------------------
 INSERT INTO `product` VALUES (1, '娃哈哈矿泉水', 2, '...', 1000, '食品', 1, '我们不生产水，我们这是大自然的搬运工');
-
+INSERT INTO `product` VALUES (2, '可口可乐', 3, '...', 1500, '饮料', 1, '清爽解渴，经典之选');
+INSERT INTO `product` VALUES (3, '康师傅红烧牛肉面', 5, '...', 800, '食品', 2, '经典味道，速食必备');
+INSERT INTO `product` VALUES (4, '蒙牛纯牛奶', 10, '...', 600, '食品', 3, '富含营养，健康之选');
+INSERT INTO `product` VALUES (5, '苹果iPhone 13', 6999, '...', 200, '电子产品', 4, '最新款智能手机，高性能体验');
+INSERT INTO `product` VALUES (6, '联想小新Pro14', 5999, '...', 100, '电子产品', 4, '轻薄便携，高效办公');
+INSERT INTO `product` VALUES (7, '海尔滚筒洗衣机', 2999, '...', 50, '家电', 5, '智能控制，节能环保');
+INSERT INTO `product` VALUES (8, '美的智能冰箱', 3999, '...', 80, '家电', 5, '大容量，智能保鲜');
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
