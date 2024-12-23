@@ -76,7 +76,4 @@ public class Product implements Serializable {
     public void setPrice(Integer price) {
         this.price = price;
     }
-
 }
-
-

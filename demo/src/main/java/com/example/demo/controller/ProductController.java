@@ -1,18 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Order;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.User;
 import com.example.demo.service.ProductService;
-import com.example.demo.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author 18536
@@ -24,9 +17,6 @@ import java.util.Map;
 public class ProductController {
     @Resource
     private ProductService productService;
-    @Resource
-    private UserService userService;
-
     @GetMapping("/list")
     public Object queryList(Product product) {
         return this.productService.findAll(product);
@@ -59,11 +49,9 @@ public class ProductController {
         return this.productService.findByProductid(productid);
     }
 
-    @GetMapping("/fetchList")
-    public Map<String, Object> fetchList(int pageNum, int pageSize, Product product) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("list",this.productService.fetchList(pageNum, pageSize, product));
-        map.put("total",this.productService.searchTotal(product));
-        return map;
+    // 通过productid查询商品信息
+    @GetMapping("/fetchProduct")
+    public Object fetchProduct(@RequestParam("productid") Integer productid) {
+        return this.productService.fetchProduct(productid);
     }
 }

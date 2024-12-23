@@ -15,6 +15,7 @@ public class FastDFSConfig {
     @PostConstruct
     public void init() throws Exception {
         ClientGlobal.initByTrackers(trackerList);
+
         // 创建TrackerClient和StorageClient对象
         this.trackerClient = new TrackerClient();
         this.storageClient = new StorageClient1();

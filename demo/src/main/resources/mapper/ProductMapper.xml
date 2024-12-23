@@ -11,11 +11,8 @@
     <select id="findByProductid" parameterType="Integer" resultType="Product">
         select * from product where id = #{productid}
     </select>
-    <select id="fetchList" parameterType="java.util.Map" resultType="Product">
-        select * from product
+    <!-- 根据商品ID查询商品 -->
+    <select id="fetchProduct" parameterType="Integer" resultType="Product">
+        select * from product where id = #{productid}
     </select>
-    <select id="searchTotal" parameterType="Product" resultType="int">
-        select count(*) from product
-    </select>
-
 </mapper>
