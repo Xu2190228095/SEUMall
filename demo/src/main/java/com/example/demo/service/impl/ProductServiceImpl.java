@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -59,5 +61,20 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public String findRemoteUrl(String img) {
         return productDao.findRemoteUrl(img);
+    }
+
+    @Override
+    public List<Product> fetchList(int page, int size, Product product) {
+        Map<String, Object> map = new HashMap<>();
+        int start = (page - 1) * size;
+        map.put("start", start);
+        map.put("size", size);
+        map.put("productInfo", product);
+        return productDao.fetchList(map);
+    }
+
+    @Override
+    public Object searchTotal(Product product) {
+        return productDao.searchTotal(product);
     }
 }

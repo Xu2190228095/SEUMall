@@ -78,4 +78,13 @@ public class ProductController {
         map.put("pictures",pictures);
         return map;
     }
+
+    @GetMapping("/fetchList")
+    public Map<String, Object> fetchList(int pageNum, int pageSize,Product product) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("list",this.productService.fetchList(pageNum, pageSize, product));
+        map.put("total",this.productService.searchTotal(product));
+        return map;
+    }
+
 }

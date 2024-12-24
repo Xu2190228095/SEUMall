@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ProductDao {
@@ -21,5 +22,8 @@ public interface ProductDao {
     List<Product> findByProductClass(String productClass);
 
     String findRemoteUrl(String img);
+
+    public List<Product> fetchList(Map <String, Object> map);
+    Object searchTotal(Product product);
 }
 

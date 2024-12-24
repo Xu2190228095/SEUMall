@@ -20,4 +20,7 @@ public interface ProductService {
     List<Product> findByProductClass(String productClass);
 
     String findRemoteUrl(String img);
+
+    public List<Product> fetchList(int page, int size, Product product);
+    Object searchTotal(Product product);
 }
