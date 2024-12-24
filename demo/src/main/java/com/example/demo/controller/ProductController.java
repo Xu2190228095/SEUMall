@@ -7,6 +7,9 @@ import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author 18536
  */
@@ -53,5 +56,13 @@ public class ProductController {
     @GetMapping("/fetchProduct")
     public Object fetchProduct(@RequestParam("productid") Integer productid) {
         return this.productService.fetchProduct(productid);
+    }
+
+    @GetMapping("/fetchList")
+    public Map<String, Object> fetchList(int pageNum, int pageSize,Product product) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("list",this.productService.fetchList(pageNum, pageSize, product));
+        map.put("total",this.productService.searchTotal(product));
+        return map;
     }
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ProductDao {
@@ -17,5 +18,9 @@ public interface ProductDao {
     public Product findByProductid(Integer productid);
     // 根据商品ID查询商品
     public Product fetchProduct(Integer productid);  // 根据productid查询商品
+
+    public List<Product> fetchList(Map<String, Object> map);
+    Object searchTotal(Product product);
+
 }
 

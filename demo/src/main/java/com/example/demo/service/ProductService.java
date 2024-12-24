@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Product;
+import com.example.demo.entity.User;
 
 import java.util.List;
 
@@ -16,4 +17,7 @@ public interface ProductService {
     public Product findByProductid(Integer productid);
     // 根据商品ID查询商品
     public Product fetchProduct(Integer productid);  // 新增接口方法
+
+    public List<Product> fetchList(int page, int size, Product product);
+    Object searchTotal(Product product);
 }

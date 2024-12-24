@@ -15,4 +15,23 @@
     <select id="fetchProduct" parameterType="Integer" resultType="Product">
         select * from product where id = #{productid}
     </select>
+
+    <select id="fetchList" parameterType="java.util.Map" resultType="Product">
+        select * from product
+        <trim prefix="where">
+            <if test="productInfo.pname != null">
+                pname like concat('%',#{productInfo.pname},'%')
+            </if>
+        </trim>
+        order by product.id
+        limit #{size} offset #{start}
+    </select>
+    <select id="searchTotal" parameterType="Product" resultType="int">
+        select count(*) from product
+        <trim prefix="where">
+            <if test="pname != null">
+                pname like concat('%',#{pname},'%')
+            </if>
+        </trim>
+    </select>
 </mapper>
