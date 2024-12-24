@@ -1,4 +1,3 @@
-/*
 package com.example.demo.controller;
 
 import com.example.demo.mq.*;
@@ -26,4 +25,4 @@ public class RabbitController {
         }
         return "success";
     }
-}*/
+}

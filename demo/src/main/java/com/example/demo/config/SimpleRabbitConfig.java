@@ -1,4 +1,3 @@
-/*
 package com.example.demo.config;
 
 import com.example.demo.mq.SimpleReceiver;
@@ -25,4 +24,4 @@ public class SimpleRabbitConfig {
         return new SimpleReceiver();
     }//接受消息
 
-}*/
+}
