@@ -8,4 +8,22 @@
     <select id="findByUsername" parameterType="String" resultType="Customer">
         select * from customer where username = #{username}
     </select>
+
+    <!-- 根据cid查询用户信息 -->
+    <select id="getCustomerByCid" resultType="Customer">
+        SELECT id, username, password, account, email
+        FROM customer
+        WHERE id = #{id}
+    </select>
+
+    <!-- 更新用户信息 -->
+    <update id="updateCustomerInfo">
+        UPDATE customer
+        SET username = #{username},
+        account = #{account},
+        email = #{email},
+        password = #{password}
+        WHERE id = #{id}
+    </update>
+
 </mapper>

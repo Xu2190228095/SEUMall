@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -40,5 +41,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findByUsername(String username) {
         return customerDao.findByUsername(username);
+    }
+
+    @Override
+    public Customer getCustomerByCid(Integer id) {
+        return customerDao.getCustomerByCid(id);
+    }
+
+    @Override
+    public boolean updateCustomerInfo(Customer customer) {
+        int result = customerDao.updateCustomerInfo(customer);
+        return result > 0; // 如果更新影响的行数大于 0，表示更新成功
     }
 }

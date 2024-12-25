@@ -16,4 +16,8 @@ public interface OrderDao {
     public List<Order> fetchList(Map<String, Object> map);
 
     Object searchTotal(Map<String, Object> map);
+
+    // 根据 cid 查询订单
+    List<Order> findOrdersByCid(Map<String, Object> map);
+
 }

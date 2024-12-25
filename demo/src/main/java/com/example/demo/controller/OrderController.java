@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -42,13 +43,6 @@ public class OrderController {
         System.out.println("order:"+order);
         SecurityContext securityContext = SecurityContextHolder.getContext();//获取用户上下文对象
         String username = securityContext.getAuthentication().getName();//获取用户名
-//        String character = null;//获取用户角色
-//        Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
-//        if (authorities != null && !authorities.isEmpty()) {
-//            // 获取第一个 GrantedAuthority
-//            GrantedAuthority authority = authorities.iterator().next();
-//            character = authority.getAuthority(); // 获取该权限的值
-//        }
         User user = userService.findByUsername(username);
         order.setUid(user.getUid());
         Map<String, Object> map = new HashMap<>();
@@ -66,5 +60,16 @@ public class OrderController {
     public Object update(@RequestBody Order order) {
         order.setState("已发货");
         return orderService.update(order);
+    }
+
+    // 根据 cid 获取所有订单
+    @GetMapping("/customerOrder")
+    public List<Order> getOrdersByUserId(
+            @RequestParam("cid") Integer cid,
+            @RequestParam(value = "order_id", required = false) String order_id,
+            @RequestParam(value = "state", required = false) String state,
+            @RequestParam(value = "create_time", required = false) String createTime,
+            @RequestParam(value = "price", required = false) Integer price){
+        return orderService.getOrdersByUserId(cid, order_id, state, createTime, price);
     }
 }

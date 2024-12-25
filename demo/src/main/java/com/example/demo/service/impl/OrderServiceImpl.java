@@ -61,4 +61,16 @@ public class OrderServiceImpl implements OrderService {
         map.put("orderInfo", order);
         return orderDao.searchTotal(map);
     }
+
+    // 根据用户 cid 查询所有订单
+    @Override
+    public List<Order> getOrdersByUserId(Integer cid, String order_id, String state, String createTime, Integer price) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("cid", cid);
+        paramMap.put("order_id", order_id);
+        paramMap.put("state", state);
+        paramMap.put("createTime", createTime);
+        paramMap.put("price", price);
+        return orderDao.findOrdersByCid(paramMap);
+    }
 }
