@@ -12,8 +12,8 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="699c551a-0170-4efc-b043-80b72eb145a8">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+    <connection id="e870936e-ba7f-42c4-8039-c26b410f7d4f">
+      <console name="Connection 1" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -23,11 +23,7 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="699c551a-0170-4efc-b043-80b72eb145a8" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="699c551a-0170-4efc-b043-80b72eb145a8" dataset="seumall.product" active-filter-id="" />
-    <filter-actions connection-id="699c551a-0170-4efc-b043-80b72eb145a8" dataset="seumall.user" active-filter-id="" />
+    <connection id="e870936e-ba7f-42c4-8039-c26b410f7d4f" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -44,15 +40,20 @@
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces>
+      <mapping database-type="MYSQL" interface-id="DEFAULT" />
+    </recently-used-interfaces>
+  </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="699c551a-0170-4efc-b043-80b72eb145a8" active="true" signed="true">
+      <connection id="e870936e-ba7f-42c4-8039-c26b410f7d4f" active="true" signed="true">
         <database>
-          <name value="Connection" />
+          <name value="Connection 1" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="8.0" />
+          <database-version value="9999.0" />
           <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />

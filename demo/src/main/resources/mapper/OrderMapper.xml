@@ -48,6 +48,24 @@
         </trim>
     </select>
 
+    <select id="findOrdersByCid" parameterType="map" resultType="com.example.demo.entity.Order">
+        SELECT `order`.id,
+        `order`.order_id,
+        `order`.create_time,
+        `order`.state,
+        `order`.number * (SELECT price FROM product WHERE product.id = `order`.pid) AS price,
+        `order`.score,
+        `order`.uid,
+        `order`.cid,
+        `order`.pid
+        FROM `order`
+        LEFT JOIN product ON product.id = `order`.pid
+        WHERE `order`.cid = #{cid}
+        <if test="order_id != null"> AND `order`.order_id = #{order_id} </if>
+        <if test="state != null"> AND `order`.state = #{state} </if>
+        <if test="createTime != null"> AND `order`.create_time = #{createTime} </if>
+    </select>
+
     <delete id="delete" parameterType="Order">
         delete from `order` where id = #{id}
     </delete>

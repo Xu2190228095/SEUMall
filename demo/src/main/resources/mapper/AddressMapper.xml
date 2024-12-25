@@ -4,4 +4,21 @@
     <select id="findAll" parameterType="Address" resultType="Address">
         select * from address
     </select>
+
+    <!-- 根据cid查询所有地址 -->
+    <select id="findAllByCid" resultType="Address">
+        SELECT * FROM address WHERE cid = #{cid}
+    </select>
+
+    <!-- 添加新地址 -->
+    <insert id="insertAddress" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO address (name, phone, country, province, city, detailedaddress, cid)
+        VALUES (#{name}, #{phone}, #{country}, #{province}, #{city}, #{detailedAddress}, #{cid})
+    </insert>
+
+    <!-- 删除地址 -->
+    <delete id="deleteAddress">
+        DELETE FROM address WHERE id = #{id}
+    </delete>
+
 </mapper>
