@@ -77,4 +77,12 @@ public class ProductServiceImpl implements ProductService {
     public Object searchTotal(Product product) {
         return productDao.searchTotal(product);
     }
+
+    @Override
+    public List<Product> findByProductName(String searchQuery,Integer sortOption) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("searchQuery", searchQuery);
+        map.put("sortOption", sortOption);
+        return productDao.findByProductName(map);
+    }
 }

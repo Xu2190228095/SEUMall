@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.AuthenticationRequest;
 import com.example.demo.entity.AuthenticationResponse;
+import com.example.demo.entity.Customer;
 import com.example.demo.entity.User;
+import com.example.demo.service.CustomerService;
 import com.example.demo.service.RedisService;
 import com.example.demo.service.UserService;
 import com.example.demo.util.JwtUtil;
@@ -38,6 +40,8 @@ public class AuthenticateController {
     private UserDetailsService customerUserDetailsService;
     @Resource
     private UserService userService;
+    @Resource
+    private CustomerService customerService;
     @Resource
     private RedisService redisService;
     /**
@@ -77,6 +81,7 @@ public class AuthenticateController {
 
     @GetMapping("/customer")
     public ResponseEntity<?> createAuthenticationToken1(AuthenticationRequest authenticationRequest) throws Exception {
+        System.out.println("11111111111:"+authenticationRequest.getUsername());
         try {
             // 尝试使用用户名和密码认证用户
             authenticationManager.authenticate(
@@ -113,12 +118,18 @@ public class AuthenticateController {
     @PostMapping("/login")
     public Object login(@RequestBody User user){
         user.setLastLoginTime(new Date(System.currentTimeMillis()));
-        System.out.println(this.userService.update(user));
+        this.userService.update(user);
         user = this.userService.findByUsername(user.getUsername());
         user.setPassword(null);
-        System.out.println(user);
         if(!user.getIsActive())
             return -1;
         return user;
+    }
+
+    @PostMapping("/CustomerLogin")
+    public Object CustomerLogin(@RequestBody Customer customer){
+        customer = this.customerService.findByUsername(customer.getUsername());
+        customer.setPassword(null);
+        return customer;
     }
 }

@@ -45,4 +45,19 @@
             </if>
         </trim>
     </select>
+
+    <select id="findByProductName" parameterType="java.util.Map" resultType="Product">
+        select * from product
+        <trim prefix="where">
+            <if test="searchQuery != null">
+                pname like concat('%',#{searchQuery},'%')
+                OR
+                `desc` like concat('%',#{searchQuery},'%')
+            </if>
+        </trim>
+        order by price
+        <if test="sortOption == 1">
+            desc
+        </if>
+    </select>
 </mapper>

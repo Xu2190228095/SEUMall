@@ -28,7 +28,6 @@
         order by order.id
         limit #{size} offset #{start}
     </select>
-
     <select id="searchTotal" parameterType="java.util.Map" resultType="int">
         select count(*) from `order`,customer
         <trim prefix="where" suffixOverrides="AND">
