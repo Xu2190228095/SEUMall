@@ -140,7 +140,7 @@ INSERT INTO `platform` VALUES (1, 0);
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product`  (
-                            `id` int(0) NOT NULL,
+                            `pid` int(0) NOT NULL,
                             `pname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
                             `price` int(0) NULL DEFAULT NULL,
                             `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -148,7 +148,7 @@ CREATE TABLE `product`  (
                             `pclass` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
                             `cid` int(0) NULL DEFAULT NULL,
                             `desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-                            PRIMARY KEY (`id`) USING BTREE
+                            PRIMARY KEY (`pid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
