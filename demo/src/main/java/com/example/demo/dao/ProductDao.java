@@ -25,5 +25,7 @@ public interface ProductDao {
 
     public List<Product> fetchList(Map <String, Object> map);
     Object searchTotal(Product product);
+
+    List<Product> findByProductName(Map <String, Object> map);
 }
 

@@ -71,7 +71,7 @@ public class ProductController {
         List<Product> products = this.productService.findByProductClass(productClass);
         map.put("products",products);
         List<byte[]> pictures = new ArrayList<>();
-        for (Product product:this.productService.findByProductClass(productClass)){
+        for (Product product:products){
             String remoteUrl = this.productService.findRemoteUrl(product.getImg());
             pictures.add(fileUploadService.downLoadFile(remoteUrl));
         }
@@ -84,6 +84,20 @@ public class ProductController {
         Map<String, Object> map = new HashMap<>();
         map.put("list",this.productService.fetchList(pageNum, pageSize, product));
         map.put("total",this.productService.searchTotal(product));
+        return map;
+    }
+
+    @GetMapping("/searchByProductName")
+    public Object searchByProductName(String productName,Integer sortOption) throws MyException, IOException {
+        Map<String, Object> map = new HashMap<>();
+        List<Product> products = this.productService.findByProductName(productName,sortOption);
+        map.put("products",products);
+        List<byte[]> pictures = new ArrayList<>();
+        for (Product product:products){
+            String remoteUrl = this.productService.findRemoteUrl(product.getImg());
+            pictures.add(fileUploadService.downLoadFile(remoteUrl));
+        }
+        map.put("pictures",pictures);
         return map;
     }
 

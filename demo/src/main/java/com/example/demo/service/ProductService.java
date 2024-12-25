@@ -23,4 +23,6 @@ public interface ProductService {
 
     public List<Product> fetchList(int page, int size, Product product);
     Object searchTotal(Product product);
+
+    List<Product> findByProductName(String searchQuery, Integer sortOption);
 }

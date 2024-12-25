@@ -13,4 +13,7 @@ public interface OrderService {
     public List<Order> fetchList(int pageNum, int pageSize, String keyword_customerName,Order order);
 
     public Object searchTotal(String keyword_customerName,Order order);
+
+    // 根据用户 cid 查询所有订单
+    List<Order> getOrdersByUserId(Integer cid, String order_id, String state, String createTime, Integer price);
 }

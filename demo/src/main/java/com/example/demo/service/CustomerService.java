@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Customer;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface CustomerService {
@@ -11,4 +12,10 @@ public interface CustomerService {
     public int update(Customer customer);
 
     public Customer findByUsername(String username);
+
+    // 获取用户信息
+    public Customer getCustomerByCid(Integer id);
+
+    // 更新用户信息
+    public boolean updateCustomerInfo(Customer customer);
 }

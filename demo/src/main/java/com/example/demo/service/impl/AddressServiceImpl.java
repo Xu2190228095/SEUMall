@@ -36,4 +36,19 @@ public class AddressServiceImpl implements AddressService {
     public int update(Address address) {
         return addressDao.update(address);
     }
+
+    @Override
+    public List<Address> getAddressesByCid(Integer cid) {
+        return addressDao.findAllByCid(cid);
+    }
+
+    @Override
+    public void addAddress(Address address) {
+        addressDao.insertAddress(address);
+    }
+
+    @Override
+    public void deleteAddress(Integer id) {
+        addressDao.deleteAddress(id);
+    }
 }
