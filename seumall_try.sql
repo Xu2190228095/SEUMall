@@ -169,13 +169,20 @@ CREATE TABLE `user`  (
                          `isActive` int(0) NULL DEFAULT NULL,
                          `account` int(0) NULL DEFAULT NULL,
                          `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                         `createtime` datetime(0) NULL DEFAULT NULL,
                          PRIMARY KEY (`uid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'seller1', '123456', NULL, NULL, 'ROLE_user', NULL, NULL, NULL);
-INSERT INTO `user` VALUES (2, 'admin1', '123456', NULL, NULL, 'ROLE_admin', NULL, NULL, NULL);
+INSERT INTO `user` VALUES (1, 'seller1', '123456', NULL, '2024-12-25 22:44:32', 'ROLE_user', 1, 1000, NULL, '2024-12-20 23:19:18');
+INSERT INTO `user` VALUES (2, 'admin1', '123456', NULL, '2024-12-20 00:13:26', 'ROLE_admin', 0, NULL, NULL, '2024-12-20 23:19:21');
+INSERT INTO `user` VALUES (10, 'admin', '123456', 'token', '2024-12-25 17:47:21', 'ROLE_admin', 1, 100, 'email12', '2024-12-20 23:19:22');
+INSERT INTO `user` VALUES (28, 'admin2', '123456', NULL, NULL, 'ROLE_admin', 0, 0, '', '2024-12-20 23:19:23');
+INSERT INTO `user` VALUES (30, 'admin5', '123456', NULL, '2024-12-19 15:22:22', 'ROLE_admin', 0, 0, '', '2024-12-20 23:19:24');
+INSERT INTO `user` VALUES (37, 'admin6', NULL, NULL, NULL, NULL, 1, NULL, '12345', '2024-12-20 02:11:32');
+INSERT INTO `user` VALUES (38, 'admin7', '123456', NULL, NULL, NULL, 1, NULL, '123', '2024-12-20 02:11:53');
+INSERT INTO `user` VALUES (39, 'seller2', '123456', NULL, '2024-12-20 23:21:44', 'ROLE_user', 1, 1000, NULL, '2024-12-20 23:19:15');
 
 SET FOREIGN_KEY_CHECKS = 1;
