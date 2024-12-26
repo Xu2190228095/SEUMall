@@ -1,7 +1,11 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Customer;
+import com.example.demo.entity.Order;
 import com.example.demo.entity.Product;
+import com.example.demo.service.CustomerService;
 import com.example.demo.service.FileUploadService;
+import com.example.demo.service.OrderService;
 import com.example.demo.service.ProductService;
 import jakarta.annotation.Resource;
 import org.csource.common.MyException;
@@ -24,6 +28,12 @@ import java.util.Map;
 public class ProductController {
     @Resource
     private ProductService productService;
+
+    @Resource
+    private OrderService orderService;
+
+    @Resource
+    private CustomerService customerService;
 
     @Resource
     private FileUploadService fileUploadService;
@@ -101,4 +111,25 @@ public class ProductController {
         return map;
     }
 
+    @GetMapping("/purchase")
+    public Object purchase(Integer pid, Integer number, Integer cid, String desc) {
+        System.out.println("pid:"+pid+"number:"+number+"cid:"+cid+"desc:"+desc);
+        Order order = new Order();
+        order.setPid(pid);
+        order.setNumber(number);
+        order.setCid(cid);
+        order.setRemark(desc);
+        order.setOrder_id(System.currentTimeMillis()+"");
+        order.setState("待发货");
+        order.setCreate_time(new java.util.Date(System.currentTimeMillis()));
+        Product product = productService.findByProductid(pid);
+        order.setUid(product.getCid());
+        orderService.insert(order);
+        product.setNumber(product.getNumber()-number);//校验数量
+        productService.update(product);
+        Customer customer=customerService.getCustomerByCid(cid);
+        customer.setAccount(customer.getAccount()-product.getPrice()*number);
+        customerService.updateCustomerInfo(customer);
+        return 1;
+    }
 }

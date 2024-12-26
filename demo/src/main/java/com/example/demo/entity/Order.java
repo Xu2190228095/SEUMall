@@ -19,6 +19,8 @@ public class Order {
     private String username;
     private Integer pid;
     private Integer price;
+    private String remark;
+    private Integer aid;
 
     public Integer getId() {
         return id;
@@ -108,10 +110,26 @@ public class Order {
         this.price = price;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Integer getAid() {
+        return aid;
+    }
+
+    public void setAid(Integer aid) {
+        this.aid = aid;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
-                "cid=" + cid +
+                "aid=" + aid +
                 ", id=" + id +
                 ", order_id='" + order_id + '\'' +
                 ", create_time=" + create_time +
@@ -119,9 +137,11 @@ public class Order {
                 ", number=" + number +
                 ", score=" + score +
                 ", uid=" + uid +
+                ", cid=" + cid +
                 ", username='" + username + '\'' +
                 ", pid=" + pid +
                 ", price=" + price +
+                ", remark='" + remark + '\'' +
                 '}';
     }
 }

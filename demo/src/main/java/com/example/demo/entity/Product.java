@@ -5,13 +5,14 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Integer pid;
+    private Integer id;
     private String pname;
     private String desc;
     private Integer price;
     private Integer number;
     private String img;
     private String pclass;
+    private Integer cid;
 
     public String getPclass() {
         return pclass;
@@ -27,14 +28,6 @@ public class Product implements Serializable {
 
     public void setPname(String pname) {
         this.pname = pname;
-    }
-
-    public Integer getId() {
-        return pid;
-    }
-
-    public void setId(Integer pid) {
-        this.pid = pid;
     }
 
     public String getDesc() {
@@ -61,12 +54,12 @@ public class Product implements Serializable {
         this.number = number;
     }
 
-    public Integer getPid() {
-        return pid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getPrice() {
@@ -75,5 +68,13 @@ public class Product implements Serializable {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getCid() {
+        return cid;
+    }
+
+    public void setCid(Integer cid) {
+        this.cid = cid;
     }
 }

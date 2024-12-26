@@ -1,0 +1,11 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CommentsDao">
+    <insert id="insert" parameterType="Comments">
+        insert into comments(content, pid, uid, create_time)
+        values (#{content}, #{pid}, #{uid}, #{createTime})
+    </insert>
+    <select id="findByPid" parameterType="Integer" resultType="Comments">
+        select * from comments where pid = #{pid}
+    </select>
+</mapper>

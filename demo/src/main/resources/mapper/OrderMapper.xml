@@ -98,4 +98,8 @@
         </trim>
         where id = #{id}
     </update>
+    <insert id="insert" parameterType="Order">
+        insert into `order`(order_id,create_time,number,score,state,uid,cid,pid,remark)
+        values(#{order_id},#{create_time},#{number},#{score},#{state},#{uid},#{cid},#{pid},#{remark})
+    </insert>
 </mapper>
