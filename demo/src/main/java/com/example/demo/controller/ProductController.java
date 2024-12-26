@@ -71,8 +71,12 @@ public class ProductController {
 
     // 通过productid查询商品信息
     @GetMapping("/fetchProduct")
-    public Object fetchProduct(@RequestParam("productid") Integer productid) {
-        return this.productService.fetchProduct(productid);
+    public Map<String, Object> fetchProduct(@RequestParam("productid") Integer productid) throws MyException, IOException {
+        Map<String, Object> map = new HashMap<>();
+        Product product = this.productService.fetchProduct(productid);
+        map.put("product",product);
+        map.put("picture",this.fileUploadService.downLoadFile(this.productService.findRemoteUrl(product.getImg())));
+        return map;
     }
 
     @GetMapping("/findByProductClass")
