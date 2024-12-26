@@ -12,4 +12,6 @@ public interface CommentsDao {
     public int update(Comments comments);
     public List<Comments> findAll(Comments comments);
     public List<Comments> findByPid(Integer pid);
+    public int getAverageScore(Integer pid);
+    public List<Integer> getAllScores(Integer pid);
 }

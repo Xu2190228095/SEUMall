@@ -8,6 +8,7 @@ import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int insert(Product product) {
+        System.out.println(product);
         return productDao.insert(product);
     }
 
@@ -72,6 +74,7 @@ public class ProductServiceImpl implements ProductService {
         map.put("productInfo", product);
         return productDao.fetchList(map);
     }
+
 
     @Override
     public Object searchTotal(Product product) {

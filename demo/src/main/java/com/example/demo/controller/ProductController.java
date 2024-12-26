@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Customer;
-import com.example.demo.entity.Order;
-import com.example.demo.entity.Product;
+import com.example.demo.entity.*;
 import com.example.demo.service.CustomerService;
 import com.example.demo.service.FileUploadService;
 import com.example.demo.service.OrderService;
@@ -101,6 +99,7 @@ public class ProductController {
         return map;
     }
 
+
     @GetMapping("/searchByProductName")
     public Object searchByProductName(String productName,Integer sortOption) throws MyException, IOException {
         Map<String, Object> map = new HashMap<>();
@@ -136,4 +135,5 @@ public class ProductController {
         customerService.updateCustomerInfo(customer);
         return 1;
     }
+
 }

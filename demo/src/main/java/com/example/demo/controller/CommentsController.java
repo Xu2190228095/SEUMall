@@ -25,4 +25,14 @@ public class CommentsController {
         return commentsService.findByPid(pid);
     }
 
+    @GetMapping("/getAverageScore")
+    public Object getAverageScore(Integer pid) {
+        return commentsService.getAverageScore(pid);
+    }
+
+    @GetMapping("/getAllScores")
+    public Object getAllScores(Integer pid) {
+        return commentsService.getAllScores(pid);
+    }
+
 }

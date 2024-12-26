@@ -4,7 +4,7 @@ public class Comments {
     private Integer id;
     private Integer cid;
     private Integer pid;
-    private String score;
+    private Integer score;
     private String comment;
 
     public Integer getCid() {
@@ -39,11 +39,11 @@ public class Comments {
         this.pid = pid;
     }
 
-    public String getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 }

@@ -77,4 +77,18 @@ public class Product implements Serializable {
     public void setCid(Integer cid) {
         this.cid = cid;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", pname='" + pname + '\'' +
+                ", desc='" + desc + '\'' +
+                ", price=" + price +
+                ", number=" + number +
+                ", img='" + img + '\'' +
+                ", pclass='" + pclass + '\'' +
+                ", cid=" + cid +
+                '}';
+    }
 }
