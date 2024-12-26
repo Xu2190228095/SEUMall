@@ -41,11 +41,12 @@
     <select id="fetchList" parameterType="java.util.Map" resultType="Product">
         select * from product
         <trim prefix="where" suffixOverrides="AND">
+            1=1
             <if test="productInfo.pname != null">
                 pname like concat('%',#{productInfo.pname},'%')
             </if>
             <if test="productInfo.id != null">
-                AND `product`.id = #{productInfo.pid}
+                AND `product`.id = #{productInfo.id}
             </if>
             <if test="productInfo.pclass != null">
                 AND `product`.pclass = #{productInfo.pclass}
