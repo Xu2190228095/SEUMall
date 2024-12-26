@@ -27,16 +27,34 @@
         select remoteUrl from imagemap where originUrl = #{img}
     </select>
 
+<!--    <select id="fetchList" parameterType="java.util.Map" resultType="Product">-->
+<!--        select * from product-->
+<!--        <trim prefix="where">-->
+<!--            <if test="productInfo.pname != null">-->
+<!--                pname like concat('%',#{productInfo.pname},'%')-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--        order by product.id-->
+<!--        limit #{size} offset #{start}-->
+<!--    </select>-->
+
     <select id="fetchList" parameterType="java.util.Map" resultType="Product">
         select * from product
-        <trim prefix="where">
+        <trim prefix="where" suffixOverrides="AND">
             <if test="productInfo.pname != null">
                 pname like concat('%',#{productInfo.pname},'%')
             </if>
+            <if test="productInfo.pid != null">
+                AND `product`.pid = #{productInfo.pid}
+            </if>
+            <if test="productInfo.pclass != null">
+                AND `product`.pclass = #{productInfo.pclass}
+            </if>
         </trim>
-        order by product.id
+        order by product.pid
         limit #{size} offset #{start}
     </select>
+
     <select id="searchTotal" parameterType="Product" resultType="int">
         select count(*) from product
         <trim prefix="where">
