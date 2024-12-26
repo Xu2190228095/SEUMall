@@ -44,14 +44,14 @@
             <if test="productInfo.pname != null">
                 pname like concat('%',#{productInfo.pname},'%')
             </if>
-            <if test="productInfo.pid != null">
-                AND `product`.pid = #{productInfo.pid}
+            <if test="productInfo.id != null">
+                AND `product`.id = #{productInfo.pid}
             </if>
             <if test="productInfo.pclass != null">
                 AND `product`.pclass = #{productInfo.pclass}
             </if>
         </trim>
-        order by product.pid
+        order by product.id
         limit #{size} offset #{start}
     </select>
 
