@@ -8,4 +8,15 @@
     <select id="findByPid" parameterType="Integer" resultType="Comments">
         select * from comments where pid = #{pid}
     </select>
+    <select id="getAverageScore" parameterType="Integer" resultType="java.lang.Double">
+        SELECT AVG(score) AS average_score
+        FROM comments
+        WHERE pid = #{pid}
+    </select>
+    <select id="getAllScores" parameterType="Integer" resultType="Integer">
+        SELECT score
+        FROM comments
+        WHERE pid = #{pid}
+    </select>
+
 </mapper>
