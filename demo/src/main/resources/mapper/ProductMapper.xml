@@ -27,16 +27,6 @@
         select remoteUrl from imagemap where originUrl = #{img}
     </select>
 
-<!--    <select id="fetchList" parameterType="java.util.Map" resultType="Product">-->
-<!--        select * from product-->
-<!--        <trim prefix="where">-->
-<!--            <if test="productInfo.pname != null">-->
-<!--                pname like concat('%',#{productInfo.pname},'%')-->
-<!--            </if>-->
-<!--        </trim>-->
-<!--        order by product.id-->
-<!--        limit #{size} offset #{start}-->
-<!--    </select>-->
 
     <select id="fetchList" parameterType="java.util.Map" resultType="Product">
         select * from product
@@ -64,6 +54,12 @@
             </if>
         </trim>
     </select>
+
+    <insert id="insert" parameterType="Product">
+        INSERT INTO product (id,pname, price, img, number, pclass,cid,`desc`)
+       VALUES (#{id}, #{pname}, #{price},#{img},#{number},#{pclass},#{cid},#{desc})
+  --      VALUES (999,'保温杯',64,'...',77,'生活用品',1,'test_desc')
+    </insert>
 
     <select id="findByProductName" parameterType="java.util.Map" resultType="Product">
         select * from product
