@@ -37,6 +37,7 @@ public class ProductController {
     private FileUploadService fileUploadService;
     @GetMapping("/list")
     public Object queryList(Product product) {
+        System.out.println("reach step 1");
         return this.productService.findAll(product);
     }
     @GetMapping("/insert")

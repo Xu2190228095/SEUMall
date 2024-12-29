@@ -21,11 +21,11 @@ public class FileUploadServiceImpl implements FileUploadService {
     @Override
     public String uploadFile(MultipartFile file) throws IOException, MyException
     {
-// 获取文件的原始文件名和扩展名
+        // 获取文件的原始文件名和扩展名
         String originalFilename = file.getOriginalFilename();
         String ext = originalFilename.substring(originalFilename.lastIndexOf(".")
                 + 1);
-// 调用StorageClient的upload_file方法上传文件
+        // 调用StorageClient的upload_file方法上传文件
         String[] uploadResults = getStorageClient().upload_file(file.getBytes(),
                 ext, null);
         // 返回文件的访问路径（通常是组名和文件名）
@@ -39,4 +39,5 @@ public class FileUploadServiceImpl implements FileUploadService {
         byte[] bytes = getStorageClient().download_file(group, path);
         return bytes;
     }
+
 }
