@@ -29,8 +29,8 @@ public class ImageController {
     private ImageService imageService;
 
     @GetMapping("/list")
-    public Object queryList(Image image) {
+    public Object queryList(String originUrl_info) {
         System.out.println("reach step 1");
-        return this.imageService.findAll(image);
+        return this.imageService.findAll(originUrl_info);
     }
 }

@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.ImageDao">
     <select id="findAll" parameterType="Image" resultType="Image">
-        select * from imagemap
+        select imagemap.remoteUrl from imagemap
+        where originUrl = #{originUrl_info}
     </select>
 </mapper>

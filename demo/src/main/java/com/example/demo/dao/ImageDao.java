@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Mapper
 public interface ImageDao {
-    public List<Image> findAll(Image Image);
+    public Image findAll(String originUrl_info);
     public int insert(Image Image);
     public int update(Image Image);
     public int delete(Image Image);

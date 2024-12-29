@@ -28,8 +28,8 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public List<Image> findAll(Image image) {
-        return imageDao.findAll(image);
+    public Image findAll(String originUrl_info) {
+        return imageDao.findAll(originUrl_info);
     }
 
     @Override
