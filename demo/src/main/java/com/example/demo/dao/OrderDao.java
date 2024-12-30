@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -19,5 +20,8 @@ public interface OrderDao {
 
     // 根据 cid 查询订单
     List<Order> findOrdersByCid(Map<String, Object> map);
+
+    public Order findById(String order_id);  // 根据订单ID查找订单
+    public void updateOrderState(Order order);  // 更新订单状态
 
 }

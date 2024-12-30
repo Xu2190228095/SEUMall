@@ -16,4 +16,8 @@ public interface OrderService {
 
     // 根据用户 cid 查询所有订单
     List<Order> getOrdersByUserId(Integer cid, String order_id, String state, String createTime, Integer price);
+
+    public void submitReview(String order_id, Integer score, String comment);
+
+    public boolean updateOrderStatusToReceived(String order_id);
 }

@@ -102,4 +102,16 @@
         insert into `order`(order_id,create_time,number,score,state,uid,cid,pid,remark)
         values(#{order_id},#{create_time},#{number},#{score},#{state},#{uid},#{cid},#{pid},#{remark})
     </insert>
+
+    <!-- 根据订单ID查询订单 -->
+    <select id="findById" resultType="Order">
+        SELECT * FROM `order` WHERE order_id = #{order_id}
+    </select>
+
+    <!-- 更新订单状态 -->
+    <update id="updateOrderState">
+        UPDATE `order`
+        SET state = #{state}
+        WHERE order_id = #{order_id}
+    </update>
 </mapper>

@@ -8,6 +8,13 @@
     <select id="findByPid" parameterType="Integer" resultType="Comments">
         select * from comments where pid = #{pid}
     </select>
+
+    <!-- 插入评论 -->
+    <insert id="save" parameterType="Comments">
+        INSERT INTO comments(cid, pid, score, comment)
+        VALUES (#{cid}, #{pid}, #{score}, #{comment})
+    </insert>
+
     <select id="getAverageScore" parameterType="Integer" resultType="java.lang.Double">
         SELECT AVG(score) AS average_score
         FROM comments

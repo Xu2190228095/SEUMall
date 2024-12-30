@@ -12,8 +12,8 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="699c551a-0170-4efc-b043-80b72eb145a8">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+    <connection id="81afb3bc-2ff3-45fa-92b9-5270ad9534e6">
+      <console name="Connection 1" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -23,11 +23,11 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="699c551a-0170-4efc-b043-80b72eb145a8" />
+    <connection id="81afb3bc-2ff3-45fa-92b9-5270ad9534e6" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="699c551a-0170-4efc-b043-80b72eb145a8" dataset="seumall.product" active-filter-id="" />
-    <filter-actions connection-id="699c551a-0170-4efc-b043-80b72eb145a8" dataset="seumall.user" active-filter-id="" />
+    <filter-actions connection-id="81afb3bc-2ff3-45fa-92b9-5270ad9534e6" dataset="seumall.comments" active-filter-id="" />
+    <filter-actions connection-id="81afb3bc-2ff3-45fa-92b9-5270ad9534e6" dataset="seumall.order" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -44,11 +44,14 @@
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces />
+  </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="699c551a-0170-4efc-b043-80b72eb145a8" active="true" signed="true">
+      <connection id="81afb3bc-2ff3-45fa-92b9-5270ad9534e6" active="true" signed="true">
         <database>
-          <name value="Connection" />
+          <name value="Connection 1" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />

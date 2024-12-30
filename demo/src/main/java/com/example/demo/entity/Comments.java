@@ -46,4 +46,15 @@ public class Comments {
     public void setScore(Integer score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "Comments{" +
+                "id=" + id +
+                ", cid=" + cid +
+                ", pid=" + pid +
+                ", score=" + score +
+                ", comment='" + comment + '\'' +
+                '}';
+    }
 }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FastDFSConfig {
-    @Value("${fastdfs.tracker-list}")
+    @Value("10.208.88.57:22122")
     private String trackerList;
     private TrackerClient trackerClient;
     private StorageClient1 storageClient;
