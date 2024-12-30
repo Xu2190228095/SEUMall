@@ -46,6 +46,10 @@
         limit #{size} offset #{start}
     </select>
 
+    <delete id="delete" parameterType="Product">
+        delete from `product` where id = #{id}
+    </delete>
+
     <select id="searchTotal" parameterType="Product" resultType="int">
         select count(*) from product
         <trim prefix="where">
