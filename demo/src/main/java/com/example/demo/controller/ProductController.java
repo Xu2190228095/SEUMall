@@ -1,13 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.*;
-import com.example.demo.service.CustomerService;
-import com.example.demo.service.FileUploadService;
-import com.example.demo.service.OrderService;
-import com.example.demo.service.ProductService;
+import com.example.demo.service.*;
 import jakarta.annotation.Resource;
 import org.csource.common.MyException;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -35,6 +34,9 @@ public class ProductController {
 
     @Resource
     private FileUploadService fileUploadService;
+
+    @Resource
+    private UserService userService;
     @GetMapping("/list")
     public Object queryList(Product product) {
         System.out.println("reach step 1");
@@ -43,6 +45,10 @@ public class ProductController {
     @GetMapping("/insert")
     public Object insert(Product product) {
         System.out.println("product:"+product);
+        SecurityContext securityContext = SecurityContextHolder.getContext();//获取用户上下文对象
+        String username = securityContext.getAuthentication().getName();//获取用户名
+        User user = userService.findByUsername(username);
+        product.setCid(user.getUid());
         return this.productService.insert(product);
     }
 
@@ -93,9 +99,16 @@ public class ProductController {
     }
 
     @GetMapping("/fetchList")
-    public Map<String, Object> fetchList(int pageNum, int pageSize,Product product) {
+    public Map<String, Object> fetchList(int pageNum, int pageSize,Product product) throws MyException, IOException {
         Map<String, Object> map = new HashMap<>();
-        map.put("list",this.productService.fetchList(pageNum, pageSize, product));
+        List<Product> products = this.productService.fetchList(pageNum, pageSize, product);
+        List<byte[]> pictures = new ArrayList<>();
+        for (Product prod:products){
+            String remoteUrl = this.productService.findRemoteUrl(prod.getImg());
+            pictures.add(fileUploadService.downLoadFile(remoteUrl));
+        }
+        map.put("list",products);
+        map.put("pictures",pictures);
         map.put("total",this.productService.searchTotal(product));
         return map;
     }

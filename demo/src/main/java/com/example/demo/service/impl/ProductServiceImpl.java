@@ -88,4 +88,9 @@ public class ProductServiceImpl implements ProductService {
         map.put("sortOption", sortOption);
         return productDao.findByProductName(map);
     }
+
+    @Override
+    public void insertImgMap(String originalFilename, String filePath) {
+        productDao.insertImgMap(originalFilename, filePath);
+    }
 }

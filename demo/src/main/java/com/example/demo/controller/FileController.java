@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.service.FileUploadService;
+import com.example.demo.service.ProductService;
 import jakarta.annotation.Resource;
 import org.csource.common.MyException;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +14,21 @@ import java.io.IOException;
 public class FileController {
     @Resource
     private FileUploadService fileUploadService;
+
+    @Resource
+    private ProductService productService;
+
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("file") MultipartFile file) throws
             IOException {
         String filePath;
+        System.out.println("file:"+file.getOriginalFilename());
         try {
             filePath = fileUploadService.uploadFile(file);
         } catch (MyException e) {
             throw new RuntimeException(e);
         }
+        productService.insertImgMap(file.getOriginalFilename(), filePath);
         return "File uploaded successfully. File path: " + filePath;
     }
 

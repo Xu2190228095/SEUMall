@@ -25,4 +25,6 @@ public interface ProductService {
     Object searchTotal(Product product);
 
     List<Product> findByProductName(String searchQuery, Integer sortOption);
+
+    void insertImgMap(String originalFilename, String filePath);
 }

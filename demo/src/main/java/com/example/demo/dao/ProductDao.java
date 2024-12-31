@@ -27,5 +27,7 @@ public interface ProductDao {
     Object searchTotal(Product product);
 
     List<Product> findByProductName(Map <String, Object> map);
+
+    void insertImgMap(String originUrl, String remoteUrl);
 }
 

@@ -108,4 +108,8 @@
         </trim>
         where id = #{id}
     </update>
+
+    <insert id="insertImgMap" parameterType="String">
+        insert into imagemap(originUrl,remoteUrl) values(#{originUrl},#{remoteUrl})
+    </insert>
 </mapper>
